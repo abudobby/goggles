@@ -8,7 +8,6 @@
 
 #import "Comments.h"
 #import "TableViewCell.h"
-#import "TableViewCell.h"
 #import "TableViewModel.h"
 
 @implementation Comments
