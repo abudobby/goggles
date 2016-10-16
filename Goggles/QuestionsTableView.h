@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Comments : UITableView
+@interface QuestionsTableView : UITableView
 @property (nonatomic, copy) NSArray *dataList;
 
 @property (nonatomic, strong) NSLayoutConstraint *tablePosition;

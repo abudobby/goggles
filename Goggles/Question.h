@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TableViewModel : NSObject
+@interface Question : NSObject
 
 @property (nonatomic, copy) NSString *iconUrl;
 @property (nonatomic, copy) NSString *title;

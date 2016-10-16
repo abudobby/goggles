@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface QAData : NSObject
-
-@property (nonatomic, strong) NSMutableArray *tableData;
+@interface DataManager : NSObject
 
 
++(NSMutableArray *)questions;
 
 @end

@@ -12,13 +12,13 @@
 #import "VideoPlayer.h"
 #import "Player.h"
 #import "TableViewCell.h"
-#import "TableViewModel.h"
-#import "Comments.h"
+#import "Question.h"
+#import "QuestionsTableView.h"
 #import "Inputbar.h"
 #import "DAKeyboardControl.h"
 #import "HeaderView.h"
 #import "VideoView.h"
-#import "QAData.h"
+#import "DataManager.h"
 
 static NSString *identifier = @"indentifier";
 
@@ -34,10 +34,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 @property (nonatomic, copy) NSArray *dataList;
 @property (nonatomic, assign) BOOL commentsDrawer;
 @property (strong, nonatomic) IBOutlet Inputbar *inputbar;
-@property (nonatomic, strong) Comments *tableView;
+@property (nonatomic, strong) QuestionsTableView *tableView;
 @property (nonatomic, strong) HeaderView *header;
 @property (nonatomic, strong) VideoView *videoView;
-@property (nonatomic, strong) QAData *tableData;
 
 
 
@@ -81,12 +80,11 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
     [_header addGestureRecognizer:singleFingerTap];
-    _tableView = [[Comments alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain videoView:_header];
+    _tableView = [[QuestionsTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain videoView:_header];
     _tableView.tableFooterView = [UIView new];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    _tableData = [[QAData alloc]init];
 
         
 }
@@ -134,7 +132,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
 - (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
 {
-    return _tableData.tableData.count;
+    return [[DataManager questions] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -142,7 +140,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     if (cell == nil) {
         cell = [[TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    cell.model = [_tableData.tableData objectAtIndex:indexPath.row];
+    cell.model = [[DataManager questions] objectAtIndex:indexPath.row];
     
     return cell;
 }

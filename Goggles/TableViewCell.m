@@ -7,7 +7,7 @@
 //
 
 #import "TableViewCell.h"
-#import "TableViewModel.h"
+#import "Question.h"
 
 @interface TableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
@@ -46,16 +46,15 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.avatar.image = [UIImage imageNamed:@"katie@3x.jpg"];
-    
     self.avatar.clipsToBounds = YES;
     self.avatar.layer.cornerRadius = self.avatar.frame.size.width/2;
     
 }
 
-- (void)setModel:(TableViewModel *)model {
+- (void)setModel:(Question *)model {
     self.titleLabel.text = model.title;
     self.contentLabel.text = model.content;
+    self.avatar.image = [UIImage imageNamed:model.avatar];
 
 
 	

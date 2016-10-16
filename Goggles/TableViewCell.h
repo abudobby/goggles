@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class TableViewModel;
+@class Question;
 
 @interface TableViewCell : UITableViewCell
 
-@property (nonatomic, strong) TableViewModel *model;
+@property (nonatomic, strong) Question *model;
 
 @end

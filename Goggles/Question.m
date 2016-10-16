@@ -6,9 +6,9 @@
 //  Copyright © 2016 teamleader. All rights reserved.
 //
 
-#import "TableViewModel.h"
+#import "Question.h"
 
-@implementation TableViewModel
+@implementation Question
 
 + (instancetype)modelWithIcon:(NSString *)icon title:(NSString *)title content:(NSString *)content avatar:(NSString *)avatar{
 	return [[self alloc] initWithIcon:icon title:title content:content avatar:avatar];
