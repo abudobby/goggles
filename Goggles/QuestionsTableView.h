@@ -15,5 +15,6 @@
 
 
 -(id) initWithFrame:(CGRect)frame style:(UITableViewStyle)style videoView:(UIView *)videoView;
+-(id) initWithReplies:(CGRect)frame style:(UITableViewStyle)style videoView:(UIView *)videoView;
 
 @end

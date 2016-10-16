@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Question.h"
 
 @interface DataManager : NSObject
 
 
+
 +(NSMutableArray *)questions;
++(NSMutableArray *)replies:(Question *)question;
+
 
 @end

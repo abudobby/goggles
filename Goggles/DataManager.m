@@ -7,7 +7,7 @@
 //
 
 #import "DataManager.h"
-#import "Question.h"
+#import "Reply.h"
 
 
 @implementation DataManager
@@ -38,6 +38,22 @@
 
 return questions;
 }
+
++(NSMutableArray *)replies:(Question *)question{
+    
+    NSMutableArray* replies = [[NSMutableArray alloc]init];
+    
+    [replies addObject:[Reply initWithModel:question name:@"James Laftery" comment:@"Melius accommodare an vim, eum utroque incorrupte et. In ipsum dicant vis, consul mucius debitis vim ea, vix veniam honestatis sadipscing no." avatar:@"stephanie@3x.jpg"]];
+    
+    [replies addObject:[Reply initWithModel:question name:@"James Laftery" comment:@" eum utroque incorrupte et. In ipsum dicant vis, consul mucius debitis vim ea, vix veniam honestatis sadipscing no. Eros paulo usu ut." avatar:@"stephanie@3x.jpg"]];
+    
+    [replies addObject:[Reply initWithModel:question name:@"James Laftery" comment:@"Est ridens accusam liberavisse cu. In vim viris platonem salutandi, epicuri salutatus qui ea. Eu suscipit gloriatur reprehendunt." avatar:@"stephanie@3x.jpg"]];
+  
+    
+    
+    return replies;
+}
+
 
 
 

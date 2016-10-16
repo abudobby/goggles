@@ -9,10 +9,13 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
+#import "RepliesViewController.h"
+
 
 @interface AppDelegate ()
 
 @property (nonatomic, strong) UIViewController *rootViewController;
+
 
 @end
 
@@ -56,7 +59,11 @@
     {
         _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-        _window.rootViewController = self.rootViewController;
+        
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
+
+
+        _window.rootViewController = nav;
     }
     
     return _window;
@@ -68,6 +75,7 @@
 {
     if (!_rootViewController)
     {
+        
         _rootViewController = [[ViewController alloc] init];
     }
     

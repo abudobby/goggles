@@ -29,7 +29,7 @@ static NSString *identifier = @"indentifier";
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
         [videoView addSubview:self];
         [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:
-                                  NSLayoutRelationEqual toItem:videoView attribute:NSLayoutAttributeTop multiplier:1.0f constant:50]];
+                                  NSLayoutRelationEqual toItem:videoView attribute:NSLayoutAttributeTop multiplier:1.0f constant:videoView.frame.origin.y+50]];
         [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeLeading relatedBy:
                                    NSLayoutRelationEqual toItem:videoView attribute:NSLayoutAttributeLeading multiplier:1.0f constant:0.0f]];
         
@@ -37,6 +37,35 @@ static NSString *identifier = @"indentifier";
         
         
         [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:frame.size.height/2]];
+        
+        
+    }
+    return self;
+}
+
+-(id) initWithReplies:(CGRect)frame style:(UITableViewStyle)style videoView:(UIView *)videoView
+{
+    self = [super initWithFrame:frame style:style];
+    if (self) {
+        self.estimatedRowHeight = 80;
+        self.rowHeight = UITableViewAutomaticDimension;
+        self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.backgroundColor = [UIColor clearColor];
+        self.separatorColor = [UIColor groupTableViewBackgroundColor];
+        
+        
+        [self registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:identifier];
+        [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [videoView addSubview:self];
+        [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:
+                                  NSLayoutRelationEqual toItem:videoView attribute:NSLayoutAttributeTop multiplier:1.0f constant:videoView.frame.origin.y]];
+        [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeLeading relatedBy:
+                                  NSLayoutRelationEqual toItem:videoView attribute:NSLayoutAttributeLeading multiplier:1.0f constant:0.0f]];
+        
+        [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:videoView attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:0.0f]];
+        
+        
+        [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:frame.size.height]];
         
         
     }

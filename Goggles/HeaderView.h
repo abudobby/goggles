@@ -14,6 +14,8 @@
 @property (nonatomic, strong) NSLayoutConstraint *headerViewTopLayout;
 
 @property (nonatomic, strong) UIImageView *cancel;
+@property (nonatomic, strong) UIView *subHead;
+
 @property (nonatomic, strong) UILabel *commentsLabel;
 
 

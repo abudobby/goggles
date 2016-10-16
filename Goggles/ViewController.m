@@ -19,12 +19,13 @@
 #import "HeaderView.h"
 #import "VideoView.h"
 #import "DataManager.h"
+#import "RepliesViewController.h"
 
 static NSString *identifier = @"indentifier";
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-static CGFloat const MaxToolbarHeight = 200.0f;
+//static CGFloat const MaxToolbarHeight = 200.0f;
 
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -55,22 +56,10 @@ static CGFloat const MaxToolbarHeight = 200.0f;
 
 
 
-
-
-
-
-
-
-
-
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-   
-  
     _videoView = [[VideoView alloc]initWithFrame:self.view.bounds attachToView:self.view];
     
     [self setInputbar];
@@ -79,20 +68,36 @@ static CGFloat const MaxToolbarHeight = 200.0f;
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
-    [_header addGestureRecognizer:singleFingerTap];
+    [_header.subHead addGestureRecognizer:singleFingerTap];
     _tableView = [[QuestionsTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain videoView:_header];
     _tableView.tableFooterView = [UIView new];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    
 
         
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
+    
+
+
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];
+
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     _inputbar = [[Inputbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
+    
+
     [_videoView addSubview:_inputbar];
     self.view.keyboardTriggerOffset = _inputbar.frame.size.height;
     [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing) {
@@ -109,7 +114,9 @@ static CGFloat const MaxToolbarHeight = 200.0f;
         CGRect tableViewFrame = _tableView.frame;
         _tableView.frame = tableViewFrame;
     }];
-    _inputbar.alpha = 0;
+    
+    _inputbar.hidden = YES;
+
 }
 
 -(void)setInputbar
@@ -141,10 +148,20 @@ static CGFloat const MaxToolbarHeight = 200.0f;
         cell = [[TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     cell.model = [[DataManager questions] objectAtIndex:indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    RepliesViewController *vc = [[RepliesViewController alloc]init];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 
 #pragma actions
 
@@ -154,7 +171,7 @@ static CGFloat const MaxToolbarHeight = 200.0f;
         if (_commentsDrawer) {
             _header.headerViewTopLayout.constant = self.view.frame.size.height/2-100;
             [UIView animateWithDuration:0.5 animations:^{
-                _inputbar.alpha = 1;
+                _inputbar.hidden = NO;
                 _header.cancel.alpha=1;
                 _header.backgroundColor = [UIColor whiteColor];
                 _header.commentsLabel.textColor = UIColorFromRGB(0x23AEFC);
@@ -162,9 +179,11 @@ static CGFloat const MaxToolbarHeight = 200.0f;
             }];
         }
         else{
+            
+            NSLog(@"yo");
             _header.headerViewTopLayout.constant = self.view.frame.size.height-50;
             [UIView animateWithDuration:0.5 animations:^{
-                _inputbar.alpha = 0;
+                _inputbar.hidden = YES;
                 _header.backgroundColor = [UIColor clearColor];
                 _header.cancel.alpha=0;
                 _header.commentsLabel.textColor = [UIColor whiteColor];
@@ -173,7 +192,6 @@ static CGFloat const MaxToolbarHeight = 200.0f;
         }
         _commentsDrawer = !_commentsDrawer;
     }
-    
 }
 
 

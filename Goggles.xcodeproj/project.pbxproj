@@ -30,6 +30,8 @@
 		2862EDBC1DB313C200FA10D2 /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDBB1DB313C200FA10D2 /* VideoView.m */; };
 		2862EDBF1DB31BAD00FA10D2 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDBE1DB31BAD00FA10D2 /* DataManager.m */; };
 		2862EDC71DB3247000FA10D2 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDC61DB3247000FA10D2 /* TableViewCell.m */; };
+		2862EDCB1DB3F8FC00FA10D2 /* RepliesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDCA1DB3F8FC00FA10D2 /* RepliesViewController.m */; };
+		2862EDCE1DB3FA0600FA10D2 /* Reply.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDCD1DB3FA0600FA10D2 /* Reply.m */; };
 		2896BA1A1DA5455C006E9669 /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2896BA191DA5455C006E9669 /* VideoPlayer.m */; };
 		2896BA1D1DA546B3006E9669 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 2896BA1C1DA546B3006E9669 /* Player.m */; };
 		2896BA201DA54B0A006E9669 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2896BA1F1DA54B0A006E9669 /* test.mp4 */; };
@@ -107,6 +109,10 @@
 		2862EDBE1DB31BAD00FA10D2 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		2862EDC51DB3247000FA10D2 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		2862EDC61DB3247000FA10D2 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		2862EDC91DB3F8FC00FA10D2 /* RepliesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepliesViewController.h; sourceTree = "<group>"; };
+		2862EDCA1DB3F8FC00FA10D2 /* RepliesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepliesViewController.m; sourceTree = "<group>"; };
+		2862EDCC1DB3FA0600FA10D2 /* Reply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reply.h; sourceTree = "<group>"; };
+		2862EDCD1DB3FA0600FA10D2 /* Reply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reply.m; sourceTree = "<group>"; };
 		2896BA181DA5455C006E9669 /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
 		2896BA191DA5455C006E9669 /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		2896BA1B1DA546B3006E9669 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 		280992521DA3167900F03747 /* Goggles */ = {
 			isa = PBXGroup;
 			children = (
+				2862EDC81DB3F5F900FA10D2 /* Replies */,
 				2862EDC31DB323CD00FA10D2 /* Extentions */,
 				2862EDC01DB3230A00FA10D2 /* Story */,
 				280992561DA3167900F03747 /* AppDelegate.h */,
@@ -230,6 +237,8 @@
 				2862EDC21DB3238000FA10D2 /* Views */,
 				280992591DA3167900F03747 /* ViewController.h */,
 				2809925A1DA3167900F03747 /* ViewController.m */,
+				2862EDBD1DB31BAD00FA10D2 /* DataManager.h */,
+				2862EDBE1DB31BAD00FA10D2 /* DataManager.m */,
 			);
 			name = Story;
 			sourceTree = "<group>";
@@ -241,8 +250,6 @@
 				2896BA1C1DA546B3006E9669 /* Player.m */,
 				28C6564B1DA70B620086CB5B /* Question.h */,
 				28C6564C1DA70B620086CB5B /* Question.m */,
-				2862EDBD1DB31BAD00FA10D2 /* DataManager.h */,
-				2862EDBE1DB31BAD00FA10D2 /* DataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -286,6 +293,17 @@
 				280F18A41DB1C12200C8E59B /* Inputbar.m */,
 			);
 			name = Inputbar;
+			sourceTree = "<group>";
+		};
+		2862EDC81DB3F5F900FA10D2 /* Replies */ = {
+			isa = PBXGroup;
+			children = (
+				2862EDC91DB3F8FC00FA10D2 /* RepliesViewController.h */,
+				2862EDCA1DB3F8FC00FA10D2 /* RepliesViewController.m */,
+				2862EDCC1DB3FA0600FA10D2 /* Reply.h */,
+				2862EDCD1DB3FA0600FA10D2 /* Reply.m */,
+			);
+			name = Replies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,11 +467,13 @@
 				2809925B1DA3167900F03747 /* ViewController.m in Sources */,
 				280F18AD1DB1C13700C8E59B /* HPGrowingTextView.m in Sources */,
 				280992581DA3167900F03747 /* AppDelegate.m in Sources */,
+				2862EDCB1DB3F8FC00FA10D2 /* RepliesViewController.m in Sources */,
 				280F18AE1DB1C13700C8E59B /* HPTextViewInternal.m in Sources */,
 				280992551DA3167900F03747 /* main.m in Sources */,
 				2862EDB91DB2FBF600FA10D2 /* HeaderView.m in Sources */,
 				2896BA1D1DA546B3006E9669 /* Player.m in Sources */,
 				280F18AC1DB1C13700C8E59B /* DAKeyboardControl.m in Sources */,
+				2862EDCE1DB3FA0600FA10D2 /* Reply.m in Sources */,
 				286098401DA8724700C4801A /* QuestionsTableView.m in Sources */,
 				280F18A51DB1C12200C8E59B /* Inputbar.m in Sources */,
 				2862EDC71DB3247000FA10D2 /* TableViewCell.m in Sources */,

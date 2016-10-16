@@ -30,9 +30,7 @@
     if (self) {
 
         
-
-        
-           }
+                }
     return self;
 
     

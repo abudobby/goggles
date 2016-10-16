@@ -41,11 +41,18 @@
         
         UIImageView *chat = [[UIImageView alloc]init];
         
+        
+        _subHead = [[UIView alloc]init];
+        
+        
+
         chat.image = [UIImage imageNamed:@"arrow-up@3x.png"];
         
         
         
         chat.translatesAutoresizingMaskIntoConstraints = NO;
+        _subHead.translatesAutoresizingMaskIntoConstraints = NO;
+
         
         
         _cancel = [[UIImageView alloc]init];
@@ -74,26 +81,28 @@
         
         _commentsLabel.textAlignment = NSTextAlignmentCenter;
         
-        [self addSubview:_commentsLabel];
-        [self addSubview:chat];
+        [_subHead addSubview:_commentsLabel];
+        [_subHead addSubview:chat];
         
-        [self addSubview:_cancel];
+        [_subHead addSubview:_cancel];
         
-        
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_commentsLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0f constant:18]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_commentsLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:chat attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0f constant:-5]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:chat attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+        [self addSubview:_subHead];
         
         
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_cancel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0f constant:12]];
+        [_subHead addConstraint:[NSLayoutConstraint constraintWithItem:_commentsLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_subHead attribute:NSLayoutAttributeTop multiplier:1.0f constant:18]];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_cancel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:-10.0f]];
+        [_subHead addConstraint:[NSLayoutConstraint constraintWithItem:_commentsLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_subHead attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+        
+        [_subHead addConstraint:[NSLayoutConstraint constraintWithItem:chat attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_subHead attribute:NSLayoutAttributeTop multiplier:1.0f constant:-5]];
+        
+        [_subHead addConstraint:[NSLayoutConstraint constraintWithItem:chat attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_subHead attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+        
+        
+        
+        [_subHead addConstraint:[NSLayoutConstraint constraintWithItem:_cancel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_subHead attribute:NSLayoutAttributeTop multiplier:1.0f constant:12]];
+        
+        [_subHead addConstraint:[NSLayoutConstraint constraintWithItem:_cancel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:_subHead attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:-10.0f]];
         
         
         
@@ -116,6 +125,21 @@
         
         
         
+        
+        
+         [self addConstraint:[NSLayoutConstraint constraintWithItem:_subHead attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0f constant:0]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_subHead attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0f constant:0.0f]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_subHead attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:0.0f]];
+        
+        [_subHead addConstraint:[NSLayoutConstraint constraintWithItem:_subHead
+                                                            attribute:NSLayoutAttributeHeight
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:nil
+                                                            attribute: NSLayoutAttributeNotAnAttribute
+                                                           multiplier:1
+                                                             constant:50]];
         
    
         
