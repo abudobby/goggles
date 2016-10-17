@@ -12,6 +12,7 @@
 #import "RepliesViewController.h"
 
 
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @interface AppDelegate ()
 
 @property (nonatomic, strong) UIViewController *rootViewController;
@@ -24,6 +25,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x3498db)];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                           shadow, NSShadowAttributeName,
+                                                           [UIFont fontWithName:@"AvenirNext-Regular" size:17.0], NSFontAttributeName, nil]];
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.clipsToBounds = NO;
     [self.window makeKeyAndVisible];

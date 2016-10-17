@@ -74,6 +74,26 @@ static NSString *identifier = @"indentifier";
     _tableView.delegate = self;
     _tableView.dataSource = self;
 
+    _inputbar = [[Inputbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
+    
+    _inputbar.alpha = 0;
+    
+    [_videoView addSubview:_inputbar];
+    self.view.keyboardTriggerOffset = _inputbar.frame.size.height;
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing) {
+        /*
+         Try not to call "self" inside this block (retain cycle).
+         But if you do, make sure to remove DAKeyboardControl
+         when you are done with the view controller by calling:
+         [self.view removeKeyboardControl];
+         */
+        
+        CGRect toolBarFrame = _inputbar.frame;
+        toolBarFrame.origin.y = keyboardFrameInView.origin.y - toolBarFrame.size.height;
+        _inputbar.frame = toolBarFrame;
+        CGRect tableViewFrame = _tableView.frame;
+        _tableView.frame = tableViewFrame;
+    }];
         
 }
 
@@ -95,28 +115,7 @@ static NSString *identifier = @"indentifier";
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    _inputbar = [[Inputbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
-    
-
-    [_videoView addSubview:_inputbar];
-    self.view.keyboardTriggerOffset = _inputbar.frame.size.height;
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing) {
-        /*
-         Try not to call "self" inside this block (retain cycle).
-         But if you do, make sure to remove DAKeyboardControl
-         when you are done with the view controller by calling:
-         [self.view removeKeyboardControl];
-         */
-        
-        CGRect toolBarFrame = _inputbar.frame;
-        toolBarFrame.origin.y = keyboardFrameInView.origin.y - toolBarFrame.size.height;
-        _inputbar.frame = toolBarFrame;
-        CGRect tableViewFrame = _tableView.frame;
-        _tableView.frame = tableViewFrame;
-    }];
-    
-    _inputbar.hidden = YES;
-
+  
 }
 
 -(void)setInputbar
@@ -159,6 +158,8 @@ static NSString *identifier = @"indentifier";
     
     RepliesViewController *vc = [[RepliesViewController alloc]init];
     
+    vc.question = [[DataManager questions] objectAtIndex:indexPath.row];
+    
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -171,7 +172,7 @@ static NSString *identifier = @"indentifier";
         if (_commentsDrawer) {
             _header.headerViewTopLayout.constant = self.view.frame.size.height/2-100;
             [UIView animateWithDuration:0.5 animations:^{
-                _inputbar.hidden = NO;
+                _inputbar.alpha = 1;
                 _header.cancel.alpha=1;
                 _header.backgroundColor = [UIColor whiteColor];
                 _header.commentsLabel.textColor = UIColorFromRGB(0x23AEFC);
@@ -180,10 +181,9 @@ static NSString *identifier = @"indentifier";
         }
         else{
             
-            NSLog(@"yo");
             _header.headerViewTopLayout.constant = self.view.frame.size.height-50;
             [UIView animateWithDuration:0.5 animations:^{
-                _inputbar.hidden = YES;
+                _inputbar.alpha = 0;
                 _header.backgroundColor = [UIColor clearColor];
                 _header.cancel.alpha=0;
                 _header.commentsLabel.textColor = [UIColor whiteColor];
@@ -192,6 +192,9 @@ static NSString *identifier = @"indentifier";
         }
         _commentsDrawer = !_commentsDrawer;
     }
+}
+
+-(void)hideBar{
 }
 
 

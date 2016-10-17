@@ -49,6 +49,7 @@
 		28C656551DA71A560086CB5B /* robert@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28C656511DA71A560086CB5B /* robert@3x.jpg */; };
 		28C656561DA71A560086CB5B /* stephanie@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28C656521DA71A560086CB5B /* stephanie@3x.jpg */; };
 		28C656571DA71A560086CB5B /* tony@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28C656531DA71A560086CB5B /* tony@3x.jpg */; };
+		28FBC0AD1DB4457500758601 /* ReplyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FBC0AC1DB4457500758601 /* ReplyHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,8 @@
 		28C656511DA71A560086CB5B /* robert@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "robert@3x.jpg"; sourceTree = "<group>"; };
 		28C656521DA71A560086CB5B /* stephanie@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "stephanie@3x.jpg"; sourceTree = "<group>"; };
 		28C656531DA71A560086CB5B /* tony@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tony@3x.jpg"; sourceTree = "<group>"; };
+		28FBC0AB1DB4457500758601 /* ReplyHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyHeader.h; sourceTree = "<group>"; };
+		28FBC0AC1DB4457500758601 /* ReplyHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyHeader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +303,8 @@
 			children = (
 				2862EDC91DB3F8FC00FA10D2 /* RepliesViewController.h */,
 				2862EDCA1DB3F8FC00FA10D2 /* RepliesViewController.m */,
+				28FBC0AB1DB4457500758601 /* ReplyHeader.h */,
+				28FBC0AC1DB4457500758601 /* ReplyHeader.m */,
 				2862EDCC1DB3FA0600FA10D2 /* Reply.h */,
 				2862EDCD1DB3FA0600FA10D2 /* Reply.m */,
 			);
@@ -477,6 +482,7 @@
 				286098401DA8724700C4801A /* QuestionsTableView.m in Sources */,
 				280F18A51DB1C12200C8E59B /* Inputbar.m in Sources */,
 				2862EDC71DB3247000FA10D2 /* TableViewCell.m in Sources */,
+				28FBC0AD1DB4457500758601 /* ReplyHeader.m in Sources */,
 				28C6564F1DA70B620086CB5B /* Question.m in Sources */,
 				2862EDBF1DB31BAD00FA10D2 /* DataManager.m in Sources */,
 			);

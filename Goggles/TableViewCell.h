@@ -12,6 +12,10 @@
 @interface TableViewCell : UITableViewCell
 
 @property (nonatomic, strong) Question *model;
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (weak, nonatomic) IBOutlet UILabel *replies;
+
+
 
 
 @end

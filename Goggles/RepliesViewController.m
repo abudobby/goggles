@@ -10,6 +10,7 @@
 #import "QuestionsTableView.h"
 #import "TableViewCell.h"
 #import "DataManager.h"
+#import "ReplyHeader.h"
 
 
 static NSString *identifier = @"indentifier";
@@ -17,15 +18,33 @@ static NSString *identifier = @"indentifier";
 @interface RepliesViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) QuestionsTableView *tableView;
 
+@property (nonatomic, strong) ReplyHeader *header;
+
+
 
 @end
 
 @implementation RepliesViewController
 
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.title = @"Replies";
+    
+    
+    _header = [[ReplyHeader alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200) question:_question];
+    
+
     
     _tableView = [[QuestionsTableView alloc] initWithReplies:self.view.bounds style:UITableViewStylePlain videoView:self.view];
+    
+    _tableView.tableHeaderView = _header;
     
     _tableView.tableFooterView = [UIView new];
     _tableView.delegate = self;
@@ -33,6 +52,7 @@ static NSString *identifier = @"indentifier";
 
     // Do any additional setup after loading the view.
 }
+
 
 #pragma tableview delegate
 
@@ -53,6 +73,8 @@ static NSString *identifier = @"indentifier";
         cell = [[TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     cell.model = [[DataManager questions] objectAtIndex:indexPath.row];
+    cell.replies.hidden =YES;
+    
     
     return cell;
 }
