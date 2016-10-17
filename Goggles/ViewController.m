@@ -50,6 +50,7 @@ static NSString *identifier = @"indentifier";
     NSLayoutConstraint *headerViewTopLayout;
     UIImageView *cancel;
     UILabel *commentsLabel;
+    UISwipeGestureRecognizer *gestureRecognizer;
 
 
 }
@@ -70,6 +71,11 @@ static NSString *identifier = @"indentifier";
                                             action:@selector(handleSingleTap:)];
     [_header.subHead addGestureRecognizer:singleFingerTap];
     _tableView = [[QuestionsTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain videoView:_header];
+    
+  gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
+    [_header.subHead addGestureRecognizer:gestureRecognizer];
+    
     _tableView.tableFooterView = [UIView new];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -170,6 +176,9 @@ static NSString *identifier = @"indentifier";
     CGPoint location = [recognizer locationInView:[recognizer.view self]];
     if (location.y<50) {
         if (_commentsDrawer) {
+            [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
+
+            
             _header.headerViewTopLayout.constant = self.view.frame.size.height/2-100;
             [UIView animateWithDuration:0.5 animations:^{
                 _inputbar.alpha = 1;
@@ -180,6 +189,8 @@ static NSString *identifier = @"indentifier";
             }];
         }
         else{
+            [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
+
             
             _header.headerViewTopLayout.constant = self.view.frame.size.height-50;
             [UIView animateWithDuration:0.5 animations:^{
