@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Question.h"
+#import "DataManager.h"
 
 @interface RepliesViewController : UIViewController
 
 @property (nonatomic, strong) Question *question;
+@property (nonatomic, strong) DataManager *dataManager;
+
 
 @end

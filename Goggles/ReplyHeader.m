@@ -114,14 +114,10 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-//    questionLabel.preferredMaxLayoutWidth = questionLabel.frame.size.width;
 
     avater.clipsToBounds = YES;
     avater.layer.cornerRadius = avater.frame.size.width/2;
-    
 
-    
 }
 
 

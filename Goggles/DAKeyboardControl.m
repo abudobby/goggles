@@ -268,7 +268,7 @@ static char UIViewKeyboardOpened;
                              [self.keyboardPanRecognizer setMinimumNumberOfTouches:1];
                              [self.keyboardPanRecognizer setDelegate:self];
                              [self.keyboardPanRecognizer setCancelsTouchesInView:NO];
-                             [self addGestureRecognizer:self.keyboardPanRecognizer];
+//                             [self addGestureRecognizer:self.keyboardPanRecognizer];
                          }
                      }];
 }

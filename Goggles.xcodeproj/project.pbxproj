@@ -29,7 +29,6 @@
 		2862EDB91DB2FBF600FA10D2 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDB81DB2FBF500FA10D2 /* HeaderView.m */; };
 		2862EDBC1DB313C200FA10D2 /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDBB1DB313C200FA10D2 /* VideoView.m */; };
 		2862EDBF1DB31BAD00FA10D2 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDBE1DB31BAD00FA10D2 /* DataManager.m */; };
-		2862EDC71DB3247000FA10D2 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDC61DB3247000FA10D2 /* TableViewCell.m */; };
 		2862EDCB1DB3F8FC00FA10D2 /* RepliesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDCA1DB3F8FC00FA10D2 /* RepliesViewController.m */; };
 		2862EDCE1DB3FA0600FA10D2 /* Reply.m in Sources */ = {isa = PBXBuildFile; fileRef = 2862EDCD1DB3FA0600FA10D2 /* Reply.m */; };
 		2896BA1A1DA5455C006E9669 /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2896BA191DA5455C006E9669 /* VideoPlayer.m */; };
@@ -43,13 +42,16 @@
 		2896BA281DA56232006E9669 /* 150250.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2896BA271DA56232006E9669 /* 150250.mp4 */; };
 		2896BA291DA56232006E9669 /* 150250.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2896BA271DA56232006E9669 /* 150250.mp4 */; };
 		2896BA2A1DA56232006E9669 /* 150250.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2896BA271DA56232006E9669 /* 150250.mp4 */; };
-		28C6564E1DA70B620086CB5B /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28C6564A1DA70B620086CB5B /* TableViewCell.xib */; };
 		28C6564F1DA70B620086CB5B /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C6564C1DA70B620086CB5B /* Question.m */; };
 		28C656541DA71A560086CB5B /* katie@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28C656501DA71A560086CB5B /* katie@3x.jpg */; };
 		28C656551DA71A560086CB5B /* robert@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28C656511DA71A560086CB5B /* robert@3x.jpg */; };
 		28C656561DA71A560086CB5B /* stephanie@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28C656521DA71A560086CB5B /* stephanie@3x.jpg */; };
 		28C656571DA71A560086CB5B /* tony@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28C656531DA71A560086CB5B /* tony@3x.jpg */; };
+		28D8939D1DB59C1600E5D84F /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28D8939C1DB59C1600E5D84F /* TableViewCell.xib */; };
 		28FBC0AD1DB4457500758601 /* ReplyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FBC0AC1DB4457500758601 /* ReplyHeader.m */; };
+		28FBC0AF1DB4FD4900758601 /* cancel-white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28FBC0AE1DB4FD4900758601 /* cancel-white@3x.png */; };
+		28FBC0B21DB577A800758601 /* RepliesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FBC0B11DB577A800758601 /* RepliesViewCell.m */; };
+		28FBC0B51DB57D0200758601 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FBC0B41DB57D0200758601 /* CustomCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,8 +110,6 @@
 		2862EDBB1DB313C200FA10D2 /* VideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoView.m; sourceTree = "<group>"; };
 		2862EDBD1DB31BAD00FA10D2 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		2862EDBE1DB31BAD00FA10D2 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
-		2862EDC51DB3247000FA10D2 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
-		2862EDC61DB3247000FA10D2 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		2862EDC91DB3F8FC00FA10D2 /* RepliesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepliesViewController.h; sourceTree = "<group>"; };
 		2862EDCA1DB3F8FC00FA10D2 /* RepliesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepliesViewController.m; sourceTree = "<group>"; };
 		2862EDCC1DB3FA0600FA10D2 /* Reply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reply.h; sourceTree = "<group>"; };
@@ -121,15 +121,20 @@
 		2896BA1F1DA54B0A006E9669 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		2896BA231DA54C9F006E9669 /* 375040.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 375040.mp4; sourceTree = "<group>"; };
 		2896BA271DA56232006E9669 /* 150250.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 150250.mp4; sourceTree = "<group>"; };
-		28C6564A1DA70B620086CB5B /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		28C6564B1DA70B620086CB5B /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		28C6564C1DA70B620086CB5B /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		28C656501DA71A560086CB5B /* katie@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "katie@3x.jpg"; sourceTree = "<group>"; };
 		28C656511DA71A560086CB5B /* robert@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "robert@3x.jpg"; sourceTree = "<group>"; };
 		28C656521DA71A560086CB5B /* stephanie@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "stephanie@3x.jpg"; sourceTree = "<group>"; };
 		28C656531DA71A560086CB5B /* tony@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tony@3x.jpg"; sourceTree = "<group>"; };
+		28D8939C1DB59C1600E5D84F /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		28FBC0AB1DB4457500758601 /* ReplyHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyHeader.h; sourceTree = "<group>"; };
 		28FBC0AC1DB4457500758601 /* ReplyHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyHeader.m; sourceTree = "<group>"; };
+		28FBC0AE1DB4FD4900758601 /* cancel-white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-white@3x.png"; sourceTree = "<group>"; };
+		28FBC0B01DB577A800758601 /* RepliesViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepliesViewCell.h; sourceTree = "<group>"; };
+		28FBC0B11DB577A800758601 /* RepliesViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepliesViewCell.m; sourceTree = "<group>"; };
+		28FBC0B31DB57D0200758601 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		28FBC0B41DB57D0200758601 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +207,7 @@
 				286098411DA899A000C4801A /* chat@3x.png */,
 				280F18B51DB2E02A00C8E59B /* arrow-up-blue@3x.png */,
 				28C656511DA71A560086CB5B /* robert@3x.jpg */,
+				28FBC0AE1DB4FD4900758601 /* cancel-white@3x.png */,
 				280F18B31DB2BBD900C8E59B /* arrow-up@3x.png */,
 				28C656521DA71A560086CB5B /* stephanie@3x.jpg */,
 				28C656531DA71A560086CB5B /* tony@3x.jpg */,
@@ -260,9 +266,6 @@
 		2862EDC21DB3238000FA10D2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				28C6564A1DA70B620086CB5B /* TableViewCell.xib */,
-				2862EDC51DB3247000FA10D2 /* TableViewCell.h */,
-				2862EDC61DB3247000FA10D2 /* TableViewCell.m */,
 				2896BA181DA5455C006E9669 /* VideoPlayer.h */,
 				2896BA191DA5455C006E9669 /* VideoPlayer.m */,
 				2862EDB71DB2FBF500FA10D2 /* HeaderView.h */,
@@ -303,10 +306,15 @@
 			children = (
 				2862EDC91DB3F8FC00FA10D2 /* RepliesViewController.h */,
 				2862EDCA1DB3F8FC00FA10D2 /* RepliesViewController.m */,
+				28FBC0B01DB577A800758601 /* RepliesViewCell.h */,
+				28FBC0B11DB577A800758601 /* RepliesViewCell.m */,
 				28FBC0AB1DB4457500758601 /* ReplyHeader.h */,
 				28FBC0AC1DB4457500758601 /* ReplyHeader.m */,
 				2862EDCC1DB3FA0600FA10D2 /* Reply.h */,
 				2862EDCD1DB3FA0600FA10D2 /* Reply.m */,
+				28D8939C1DB59C1600E5D84F /* TableViewCell.xib */,
+				28FBC0B31DB57D0200758601 /* CustomCell.h */,
+				28FBC0B41DB57D0200758601 /* CustomCell.m */,
 			);
 			name = Replies;
 			sourceTree = "<group>";
@@ -425,14 +433,15 @@
 				28C656541DA71A560086CB5B /* katie@3x.jpg in Resources */,
 				280992601DA3167900F03747 /* Assets.xcassets in Resources */,
 				28C656571DA71A560086CB5B /* tony@3x.jpg in Resources */,
+				28FBC0AF1DB4FD4900758601 /* cancel-white@3x.png in Resources */,
 				2809928D1DA3243000F03747 /* selfie.png in Resources */,
 				2809928B1DA323A800F03747 /* squad.jpg in Resources */,
 				2896BA281DA56232006E9669 /* 150250.mp4 in Resources */,
-				28C6564E1DA70B620086CB5B /* TableViewCell.xib in Resources */,
 				280F18B41DB2BBD900C8E59B /* arrow-up@3x.png in Resources */,
 				280F18B61DB2E02A00C8E59B /* arrow-up-blue@3x.png in Resources */,
 				28C656551DA71A560086CB5B /* robert@3x.jpg in Resources */,
 				286098421DA899A000C4801A /* chat@3x.png in Resources */,
+				28D8939D1DB59C1600E5D84F /* TableViewCell.xib in Resources */,
 				2896BA201DA54B0A006E9669 /* test.mp4 in Resources */,
 				280992891DA322D200F03747 /* LaunchScreen.storyboard in Resources */,
 				280F18BC1DB2E93100C8E59B /* cancel-filled@3x.png in Resources */,
@@ -476,12 +485,13 @@
 				280F18AE1DB1C13700C8E59B /* HPTextViewInternal.m in Sources */,
 				280992551DA3167900F03747 /* main.m in Sources */,
 				2862EDB91DB2FBF600FA10D2 /* HeaderView.m in Sources */,
+				28FBC0B21DB577A800758601 /* RepliesViewCell.m in Sources */,
 				2896BA1D1DA546B3006E9669 /* Player.m in Sources */,
 				280F18AC1DB1C13700C8E59B /* DAKeyboardControl.m in Sources */,
 				2862EDCE1DB3FA0600FA10D2 /* Reply.m in Sources */,
 				286098401DA8724700C4801A /* QuestionsTableView.m in Sources */,
+				28FBC0B51DB57D0200758601 /* CustomCell.m in Sources */,
 				280F18A51DB1C12200C8E59B /* Inputbar.m in Sources */,
-				2862EDC71DB3247000FA10D2 /* TableViewCell.m in Sources */,
 				28FBC0AD1DB4457500758601 /* ReplyHeader.m in Sources */,
 				28C6564F1DA70B620086CB5B /* Question.m in Sources */,
 				2862EDBF1DB31BAD00FA10D2 /* DataManager.m in Sources */,

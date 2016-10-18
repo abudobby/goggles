@@ -178,11 +178,15 @@
 }
 -(void)growingTextViewDidBeginEditing:(HPGrowingTextView *)growingTextView
 {
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(inputbarDidBecomeFirstResponder:)])
     {
         [self.delegate inputbarDidBecomeFirstResponder:self];
     }
 }
+
+
+
 - (void)growingTextViewDidChange:(HPGrowingTextView *)growingTextView
 {
     NSString *text = [growingTextView.text stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -191,6 +195,5 @@
     else
         [self.rightButton setSelected:NO];
 }
-
 
 @end

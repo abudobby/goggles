@@ -8,13 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "Question.h"
+#import "Reply.h"
 
 @interface DataManager : NSObject
 
+@property (nonatomic, strong) NSMutableArray *questionsList;
+@property (nonatomic, strong) NSMutableArray *replyList;
 
 
-+(NSMutableArray *)questions;
-+(NSMutableArray *)replies:(Question *)question;
+
+
+-(void)setQuestionsData;
+-(void)setRepliesData:(Question *)question;
+-(void)addQuestion:(Question *)question;
+-(void)addReply:(Reply *)reply;
 
 
 @end

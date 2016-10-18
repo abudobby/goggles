@@ -11,7 +11,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "VideoPlayer.h"
 #import "Player.h"
-#import "TableViewCell.h"
 #import "Question.h"
 #import "QuestionsTableView.h"
 #import "Inputbar.h"
@@ -20,6 +19,8 @@
 #import "VideoView.h"
 #import "DataManager.h"
 #import "RepliesViewController.h"
+#import "HPGrowingTextView.h"
+#import "CustomCell.h"
 
 static NSString *identifier = @"indentifier";
 
@@ -28,7 +29,7 @@ static NSString *identifier = @"indentifier";
 //static CGFloat const MaxToolbarHeight = 200.0f;
 
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, InputbarDelegate>
 
 @property (nonatomic, strong) UIView *headerView;
 
@@ -38,6 +39,10 @@ static NSString *identifier = @"indentifier";
 @property (nonatomic, strong) QuestionsTableView *tableView;
 @property (nonatomic, strong) HeaderView *header;
 @property (nonatomic, strong) VideoView *videoView;
+@property (nonatomic, strong) HPGrowingTextView *textView;
+@property (nonatomic, strong) DataManager *dataManager;
+
+
 
 
 
@@ -51,6 +56,7 @@ static NSString *identifier = @"indentifier";
     UIImageView *cancel;
     UILabel *commentsLabel;
     UISwipeGestureRecognizer *gestureRecognizer;
+    UITapGestureRecognizer *singleFingerTap;
 
 
 }
@@ -61,12 +67,24 @@ static NSString *identifier = @"indentifier";
 {
     [super viewDidLoad];
     
+    _dataManager = [[DataManager alloc]init];
+    
+    [_dataManager setQuestionsData];
+    
+    
     _videoView = [[VideoView alloc]initWithFrame:self.view.bounds attachToView:self.view];
     
-    [self setInputbar];
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:(UIBarButtonSystemItemStop)
+                                    target:self
+                                    action:@selector(doneButtonTapped:)];
+    
+    
+    self.navigationItem.leftBarButtonItem = closeButton;
+    
     _commentsDrawer = YES;
     _header = [[HeaderView alloc]initWithFrame:self.view.bounds attachToView:_videoView];
-    UITapGestureRecognizer *singleFingerTap =
+    singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
     [_header.subHead addGestureRecognizer:singleFingerTap];
@@ -79,10 +97,15 @@ static NSString *identifier = @"indentifier";
     _tableView.tableFooterView = [UIView new];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    [_tableView registerClass:[CustomCell class] forCellReuseIdentifier:identifier];
+    
+
 
     _inputbar = [[Inputbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
     
     _inputbar.alpha = 0;
+    [self setInputbar];
+
     
     [_videoView addSubview:_inputbar];
     self.view.keyboardTriggerOffset = _inputbar.frame.size.height;
@@ -99,6 +122,8 @@ static NSString *identifier = @"indentifier";
         _inputbar.frame = toolBarFrame;
         CGRect tableViewFrame = _tableView.frame;
         _tableView.frame = tableViewFrame;
+        
+
     }];
         
 }
@@ -114,15 +139,20 @@ static NSString *identifier = @"indentifier";
 -(void)viewWillDisappear:(BOOL)animated{
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:nil];
+//    _inputbar.alpha = 0;
+
+    
 
 
 }
+
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
   
 }
+
 
 -(void)setInputbar
 {
@@ -131,6 +161,8 @@ static NSString *identifier = @"indentifier";
     self.inputbar.rightButtonText = @"Send";
     self.inputbar.rightButtonTextColor = [UIColor colorWithRed:0 green:124/255.0 blue:1 alpha:1];
 }
+
+
 
 
 
@@ -144,17 +176,19 @@ static NSString *identifier = @"indentifier";
 
 - (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[DataManager questions] count];
+    
+    return [_dataManager.questionsList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        cell = [[TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    }
-    cell.model = [[DataManager questions] objectAtIndex:indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    
+    cell.model = [_dataManager.questionsList objectAtIndex:indexPath.row];
+    
 
+    
     
     return cell;
 }
@@ -164,11 +198,56 @@ static NSString *identifier = @"indentifier";
     
     RepliesViewController *vc = [[RepliesViewController alloc]init];
     
-    vc.question = [[DataManager questions] objectAtIndex:indexPath.row];
+    vc.question = [_dataManager.questionsList objectAtIndex:indexPath.row];
+    vc.dataManager = _dataManager;
     
     [self.navigationController pushViewController:vc animated:YES];
     
 }
+
+-(void)inputbarDidPressRightButton:(Inputbar *)inputbar{
+    
+Question *newQuestion = [Question modelWithIcon:@"" title:@"Abdi Musse" content:inputbar.textView.text avatar:@"tony@3x.jpg"];
+    
+    [_dataManager addQuestion:newQuestion];
+    
+    NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:[_dataManager.questionsList count]-1 inSection:0];
+    
+    [_tableView insertRowsAtIndexPaths:@[indexPath1] withRowAnimation:UITableViewRowAnimationBottom];
+    
+    [self.tableView scrollToRowAtIndexPath:indexPath1
+                          atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
+    
+    [self.view layoutIfNeeded];
+    
+    
+    
+    
+}
+
+-(void)inputbarDidBecomeFirstResponder:(Inputbar *)inputbar{
+    
+    _header.headerViewTopLayout.constant = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        _inputbar.alpha = 1;
+        _header.cancel.alpha=1;
+        _header.backgroundColor = [UIColor whiteColor];
+        _header.commentsLabel.textColor = UIColorFromRGB(0x23AEFC);
+        [self.view layoutIfNeeded];
+    }];
+    
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[_dataManager.questionsList count]-1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
+    
+    
+}
+
+
 
 #pragma actions
 
@@ -191,7 +270,7 @@ static NSString *identifier = @"indentifier";
         else{
             [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
 
-            
+            [_inputbar resignFirstResponder];
             _header.headerViewTopLayout.constant = self.view.frame.size.height-50;
             [UIView animateWithDuration:0.5 animations:^{
                 _inputbar.alpha = 0;
@@ -205,8 +284,6 @@ static NSString *identifier = @"indentifier";
     }
 }
 
--(void)hideBar{
-}
 
 
 - (void)didReceiveMemoryWarning

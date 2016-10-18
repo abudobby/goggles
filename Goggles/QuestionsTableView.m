@@ -7,7 +7,6 @@
 //
 
 #import "QuestionsTableView.h"
-#import "TableViewCell.h"
 #import "Question.h"
 
 @implementation QuestionsTableView
@@ -18,14 +17,13 @@ static NSString *identifier = @"indentifier";
 {
     self = [super initWithFrame:frame style:style];
     if (self) {
-        self.estimatedRowHeight = 80;
+        self.estimatedRowHeight = 120;
         self.rowHeight = UITableViewAutomaticDimension;
         self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         self.backgroundColor = [UIColor clearColor];
         self.separatorColor = [UIColor groupTableViewBackgroundColor];
         
         
-        [self registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:identifier];
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
         [videoView addSubview:self];
         [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:
@@ -43,6 +41,7 @@ static NSString *identifier = @"indentifier";
     return self;
 }
 
+
 -(id) initWithReplies:(CGRect)frame style:(UITableViewStyle)style videoView:(UIView *)videoView
 {
     self = [super initWithFrame:frame style:style];
@@ -54,7 +53,6 @@ static NSString *identifier = @"indentifier";
         self.separatorColor = [UIColor groupTableViewBackgroundColor];
         
         
-        [self registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:identifier];
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
         [videoView addSubview:self];
         [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:
@@ -65,12 +63,14 @@ static NSString *identifier = @"indentifier";
         [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:videoView attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:0.0f]];
         
         
-        [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:frame.size.height]];
+        [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:frame.size.height-50]];
         
         
     }
     return self;
 }
+
+
 
 
 

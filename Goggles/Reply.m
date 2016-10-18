@@ -16,7 +16,7 @@
 
 - initWithQuestion:(Question *)question name:(NSString *)name comment:(NSString *)comment avatar:(NSString *)avatar {
     if (self = [super init]) {
-        self.question = [question copy];
+        self.question = question;
         self.name = [name copy];
         self.comment = [comment copy];
         self.avatar = [avatar copy];

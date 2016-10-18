@@ -13,7 +13,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *comment;
 @property (nonatomic, copy) NSString *avatar;
-@property (nonatomic, copy) Question *question;
+@property (nonatomic, strong) Question *question;
 
 
 
