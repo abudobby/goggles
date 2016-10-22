@@ -21,7 +21,7 @@
 -(void)setQuestionsData;
 -(void)setRepliesData:(Question *)question;
 -(void)addQuestion:(Question *)question;
--(void)addReply:(Reply *)reply;
+-(void)addReply:(Question *)quest reply:(Reply *)reply;
 
 
 @end

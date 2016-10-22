@@ -100,7 +100,7 @@
         
         
         
-        [_subHead addConstraint:[NSLayoutConstraint constraintWithItem:_cancel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_subHead attribute:NSLayoutAttributeTop multiplier:1.0f constant:12]];
+        [_subHead addConstraint:[NSLayoutConstraint constraintWithItem:_cancel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_subHead attribute:NSLayoutAttributeTop multiplier:1.0f constant:15]];
         
         [_subHead addConstraint:[NSLayoutConstraint constraintWithItem:_cancel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:_subHead attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:-10.0f]];
         
@@ -169,6 +169,7 @@
     return self;
     
 }
+
 
 
 

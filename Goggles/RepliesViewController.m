@@ -16,7 +16,7 @@
 
 static NSString *identifier = @"indentifier";
 
-@interface RepliesViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface RepliesViewController () <UITableViewDelegate, UITableViewDataSource, InputbarDelegate>
 @property (nonatomic, strong) QuestionsTableView *tableView;
 @property (strong, nonatomic) IBOutlet Inputbar *inputbar;
 
@@ -41,13 +41,12 @@ static NSString *identifier = @"indentifier";
     
     
 
-    [_dataManager setRepliesData:_question];
     
 
     self.title = @"Replies";
     
    
-    
+
     
     _header = [[ReplyHeader alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200) question:_question];
     
@@ -65,6 +64,8 @@ static NSString *identifier = @"indentifier";
 
     
     _inputbar = [[Inputbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
+    [self setInputbar];
+
     
     
     
@@ -80,11 +81,12 @@ static NSString *identifier = @"indentifier";
         CGRect toolBarFrame = _inputbar.frame;
         toolBarFrame.origin.y = keyboardFrameInView.origin.y - toolBarFrame.size.height;
         _inputbar.frame = toolBarFrame;
-        CGRect tableViewFrame = _tableView.frame;
-        _tableView.frame = tableViewFrame;
+        
+        
+        
+//        CGRect tableViewFrame = _tableView.frame;
     }];
     [self.view addSubview:_inputbar];
-
 
     // Do any additional setup after loading the view.
 }
@@ -100,13 +102,15 @@ static NSString *identifier = @"indentifier";
 
 - (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_dataManager.replyList count];
+    return _replies.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RepliesViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    cell.reply = [_dataManager.replyList objectAtIndex:indexPath.row];
+    
+    
+    cell.reply = [_replies objectAtIndex:indexPath.row];
     
 
     
@@ -119,6 +123,41 @@ static NSString *identifier = @"indentifier";
     self.inputbar.delegate = self;
     self.inputbar.rightButtonText = @"Send";
     self.inputbar.rightButtonTextColor = [UIColor colorWithRed:0 green:124/255.0 blue:1 alpha:1];
+}
+-(void)inputbarDidBecomeFirstResponder:(Inputbar *)inputbar{
+
+    NSIndexPath *indexPath;
+    
+    if ([_replies count]!=0) {
+        indexPath = [NSIndexPath indexPathForRow:[_replies count]-1 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
+
+    }
+    
+    
+    
+    
+    
+}
+-(void)inputbarDidPressRightButton:(Inputbar *)inputbar{
+    
+    Reply *newReply = [Reply initWithModel:@"Abdi Musse" comment:inputbar.textView.text avatar:@"robert@3x.jpg"];
+    
+    [_dataManager addReply:_question reply:newReply];
+    
+    NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:[_replies count]-1 inSection:0];
+    
+    [_tableView insertRowsAtIndexPaths:@[indexPath1] withRowAnimation:UITableViewRowAnimationBottom];
+    
+    [self.tableView scrollToRowAtIndexPath:indexPath1
+                          atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
+    
+    [_inputbar resignFirstResponder];
+    
+    
+    
 }
 
 

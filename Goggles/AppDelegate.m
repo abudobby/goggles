@@ -9,13 +9,19 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
-#import "RepliesViewController.h"
+#import "HomeViewController.h"
+#import "TabViewController.h"
 
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @interface AppDelegate ()
 
 @property (nonatomic, strong) UIViewController *rootViewController;
+@property (strong, nonatomic) UITabBarController *tabBarController;
+@property (strong, nonatomic) TabViewController *tabbar;
+
+
+
 
 
 @end
@@ -26,25 +32,33 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    
     [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x3498db)];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-
+    
     NSShadow *shadow = [[NSShadow alloc] init];
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                            [UIColor whiteColor], NSForegroundColorAttributeName,
                                                            shadow, NSShadowAttributeName,
                                                            [UIFont fontWithName:@"AvenirNext-Regular" size:17.0], NSFontAttributeName, nil]];
     
+
     
+    _tabbar = [[TabViewController alloc] init];
+    
+    
+//    UIColorFromRGB(0x23AEFC);
+    
+
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.clipsToBounds = NO;
+    self.window.rootViewController = _tabbar;
     [self.window makeKeyAndVisible];
-    
-    return YES;
-}
+    return YES;}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -72,13 +86,23 @@
 {
     if (!_window)
     {
+        UITabBarController *tab = [[UITabBarController alloc] init];
+        
+        tab.viewControllers = @[self.rootViewController];
+
+        
+        
+       
+        
+        [self.window makeKeyAndVisible];
+        
         _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
         
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
 
 
-        _window.rootViewController = nav;
+        _window.rootViewController = tab;
     }
     
     return _window;

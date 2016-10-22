@@ -57,6 +57,9 @@ static NSString *identifier = @"indentifier";
     UILabel *commentsLabel;
     UISwipeGestureRecognizer *gestureRecognizer;
     UITapGestureRecognizer *singleFingerTap;
+    
+    UISwipeGestureRecognizer *dismiss;
+
 
 
 }
@@ -77,22 +80,38 @@ static NSString *identifier = @"indentifier";
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]
                                     initWithBarButtonSystemItem:(UIBarButtonSystemItemStop)
                                     target:self
-                                    action:@selector(doneButtonTapped:)];
+                                    action:@selector(dismiss:)];
     
     
-    self.navigationItem.leftBarButtonItem = closeButton;
+    self.navigationItem.rightBarButtonItem = closeButton;
     
     _commentsDrawer = YES;
     _header = [[HeaderView alloc]initWithFrame:self.view.bounds attachToView:_videoView];
     singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
+    
+    
+    
+    dismiss =
+    [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(dismiss:)];
+    
+    [dismiss setDirection:(UISwipeGestureRecognizerDirectionDown)];
+
+    
+    [_videoView addGestureRecognizer:dismiss];
+
+    
+    
     [_header.subHead addGestureRecognizer:singleFingerTap];
     _tableView = [[QuestionsTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain videoView:_header];
     
   gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
     [_header.subHead addGestureRecognizer:gestureRecognizer];
+    
+    
     
     _tableView.tableFooterView = [UIView new];
     _tableView.delegate = self;
@@ -129,17 +148,25 @@ static NSString *identifier = @"indentifier";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
+    _tableView.hidden = NO;
     
     
 
 
 }
 -(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:nil];
-//    _inputbar.alpha = 0;
+    _tableView.hidden = YES;
+    
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+
 
     
 
@@ -151,6 +178,13 @@ static NSString *identifier = @"indentifier";
 {
     [super viewDidAppear:animated];
   
+}
+
+- (void)dismiss:(UITapGestureRecognizer *)recognizer {
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 
@@ -198,8 +232,12 @@ static NSString *identifier = @"indentifier";
     
     RepliesViewController *vc = [[RepliesViewController alloc]init];
     
+    Question *quest = _dataManager.questionsList[indexPath.row];
+    
+    
     vc.question = [_dataManager.questionsList objectAtIndex:indexPath.row];
     vc.dataManager = _dataManager;
+    vc.replies = quest.replies;
     
     [self.navigationController pushViewController:vc animated:YES];
     

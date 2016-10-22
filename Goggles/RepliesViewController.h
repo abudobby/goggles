@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) Question *question;
 @property (nonatomic, strong) DataManager *dataManager;
+@property (nonatomic, strong) NSMutableArray *replies;
+
 
 
 @end

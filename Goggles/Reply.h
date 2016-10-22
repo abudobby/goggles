@@ -13,9 +13,8 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *comment;
 @property (nonatomic, copy) NSString *avatar;
-@property (nonatomic, strong) Question *question;
 
 
 
-+ (instancetype)initWithModel:(Question *)question name:(NSString *)name comment:(NSString *)comment avatar:(NSString *)avatar;
++ (instancetype)initWithModel:(NSString *)name comment:(NSString *)comment avatar:(NSString *)avatar;
 @end

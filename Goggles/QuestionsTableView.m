@@ -17,10 +17,10 @@ static NSString *identifier = @"indentifier";
 {
     self = [super initWithFrame:frame style:style];
     if (self) {
-        self.estimatedRowHeight = 120;
+        self.estimatedRowHeight = 80;
         self.rowHeight = UITableViewAutomaticDimension;
         self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor whiteColor];
         self.separatorColor = [UIColor groupTableViewBackgroundColor];
         
         
@@ -49,7 +49,7 @@ static NSString *identifier = @"indentifier";
         self.estimatedRowHeight = 80;
         self.rowHeight = UITableViewAutomaticDimension;
         self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor whiteColor];
         self.separatorColor = [UIColor groupTableViewBackgroundColor];
         
         
@@ -62,8 +62,10 @@ static NSString *identifier = @"indentifier";
         
         [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:videoView attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:0.0f]];
         
+       _bottom = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:frame.size.height-50];
         
-        [videoView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:frame.size.height-50]];
+        
+        [videoView addConstraint:_bottom];
         
         
     }

@@ -14,6 +14,8 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *avatar;
+@property (nonatomic, strong) NSMutableArray *replies;
+
 
 
 + (instancetype)modelWithIcon:(NSString *)icon title:(NSString *)title content:(NSString *)content avatar:(NSString *)avatar;
