@@ -7,13 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Pulldown.h"
 
 @interface HostView : UIView
 
 @property (nonatomic, strong) UIImageView *img;
+
+@property (nonatomic, strong) Pulldown *pulldown;
+
 @property (nonatomic, strong) UILabel *name;
 @property (nonatomic, strong) UILabel *company;
 @property (nonatomic, strong) UILabel *bio;
+@property (nonatomic, strong) NSLayoutConstraint *heightP;
+
+@property (nonatomic, strong) UIButton *play;
+;
+
+
+
+
+@property (nonatomic, strong) UICollectionView *collectV;
 
 
 

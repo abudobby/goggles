@@ -1,0 +1,79 @@
+{ "hosts": [
+              {
+              "name": "Greg",
+              "img": "greg.jpg",
+              "job": "UI Designer at Netflix",
+              "bio": "Hi! My Name is Greg. I am a UI Designer at Netflix and I am excited to share my story with you guys today! Hit me up with any questions",
+              
+            "social_media": [
+                             {"linkedin": "@kingmusse"},
+                             {"instagram": "@kingmusse"},
+                             {"twitter": "@kingmusse"}
+                             ]
+              
+              
+              },
+              {
+              "name": "Wendy",
+              "img": "katie@3x.jpg",
+              "job": "Design Technologist at Twitter",
+              "bio": "Hi! My Name is Greg. I am a UI Designer at Netflix and I am excited to share my story with you guys today! Hit me up with any questions",
+              
+              "social_media": {
+              "linkedin": "@kingmusse",
+              "instagram": "@kingmusse",
+              "twitter": "@kingmusse"
+              }
+              
+              
+              },
+              {
+              "name": "Robert",
+              "img": "robert@3x.jpg",
+              "job": "UX designer at Snapchat",
+              "bio": "Hi! My Name is Greg. I am a UI Designer at Netflix and I am excited to share my story with you guys today! Hit me up with any questions",
+              
+              "social_media": {
+              "linkedin": "@kingmusse",
+              "instagram": "@kingmusse",
+              "twitter": "@kingmusse"
+              }
+              
+              
+              },
+              
+              {
+              "name": "Samantha",
+              "img": "sam.jpeg",
+              "job": "Product Manager at Amazon",
+              "bio": "Hello everyone! My name is Sam and I am a product manager at Amazon!",
+              
+              "social_media": {
+              "linkedin": "@kingmusse",
+              "instagram": "@kingmusse",
+              "twitter": "@kingmusse"
+              }
+              
+              
+              },
+              {
+              "name": "Thomas",
+              "img": "thomas.jpeg",
+              "job": "VP of Design at Airbnb",
+              "bio": "My name is Tom and I will be your host soon. Ask me anything. Netflix rocks!! ",
+              
+              "social_media": {
+              "linkedin": "@kingmusse",
+              "instagram": "@kingmusse",
+              "twitter": "@kingmusse"
+              }
+              
+              
+              
+            }
+            
+              
+              
+              
+              ]
+}

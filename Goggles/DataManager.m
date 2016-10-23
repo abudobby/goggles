@@ -9,6 +9,7 @@
 #import "DataManager.h"
 
 
+
 @implementation DataManager{
     
     Question *quest1, *quest2, *quest3, *quest4;
@@ -30,6 +31,33 @@
     return self;
 
 }
+
+-(void)getRemoteData{
+    
+    _hosts = [[NSMutableArray alloc]init];
+    NSString *url = [[NSBundle mainBundle] pathForResource:@"remote_data" ofType:@"json"];
+    NSData *remote = [[NSData alloc] initWithContentsOfFile:url];
+    NSError *error;
+    
+    NSDictionary *remoteData = [NSJSONSerialization JSONObjectWithData:remote options:0 error:&error];
+    
+    NSMutableArray *datas = [remoteData[@"hosts"] copy];
+    
+    
+    
+    for (int i=0; i<datas.count; i++) {
+        
+        [_hosts addObject:[Host initWithDetails:datas[i][@"img"] name:datas[i][@"name"] job:datas[i][@"job"] bio:datas[i][@"bio"] social_media:datas[0][@"social_media"]]];
+        
+        
+    }
+    
+    
+
+}
+
+
+
 
 -(void)setQuestionsData{
     
@@ -68,28 +96,6 @@ quest1 =[Question modelWithIcon:@"https://www.teamleader.cn/content/images/2016/
 
 }
 
--(void)setRepliesData:(Question *)question{
-    
-    
-    
-    
-//    
-//    _replyList = [[NSMutableArray alloc]init];
-//    
-//    
-//    
-//
-//    
-//    [_replyList addObject:[Reply initWithModel:@"Ema Chang" comment:@"I am also curious about this question!" avatar:@"stephanie@3x.jpg"]];
-//    
-//    [_replyList addObject:[Reply initWithModel:question name:@"Kristy Johnson" comment:@"Great question! Try to focus on what your are passionate about! In underdrad you have plenty of opportunites to discover yourself!" avatar:@"katie@3x.jpg"]];
-//    
-//    [_replyList addObject:[Reply initWithModel:question name:@"Robert Brooks" comment:@"Thanks!! " avatar:@"robert@3x.jpg"]];
-//  
-
-    
-    
-}
 
 -(void)addQuestion:(Question *)question{
     

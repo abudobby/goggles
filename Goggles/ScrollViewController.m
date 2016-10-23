@@ -1,28 +1,21 @@
 //
-//  ProfileViewController.m
+//  ScrollViewController.m
 //  Goggles
 //
-//  Created by Abdi on 10/21/16.
+//  Created by Abdi on 10/22/16.
 //  Copyright © 2016 Goggles. All rights reserved.
 //
 
-#import "ProfileViewController.h"
+#import "ScrollViewController.h"
 
-@interface ProfileViewController ()
+@interface ScrollViewController ()
 
 @end
 
-@implementation ProfileViewController
+@implementation ScrollViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UILabel *text = [[UILabel alloc]initWithFrame:CGRectMake(30, 200, 100, 30)];
-    text.text = @"Profile";
-    
-    NSLog(@"ONe");
-    
-    [self.view addSubview:text];
     // Do any additional setup after loading the view.
 }
 

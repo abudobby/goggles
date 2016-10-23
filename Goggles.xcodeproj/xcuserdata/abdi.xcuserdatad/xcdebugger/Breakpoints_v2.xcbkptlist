@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Goggles/HostView.m"
-            timestampString = "498766109.048336"
+            timestampString = "498871431.890515"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "-initWithFrame:attachToView:"
             landmarkType = "7">
          </BreakpointContent>

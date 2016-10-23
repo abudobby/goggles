@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController<UIPageViewControllerDataSource>
+@interface HomeViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
 
-@property (strong, nonatomic) UIPageViewController *pageController;
 
 @end
 

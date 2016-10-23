@@ -8,139 +8,206 @@
 
 #import "HostViewController.h"
 #import "HomeViewController.h"
-
+#import "HostView.h"
+#import "ViewController.h"
+#import "CollectionViewCell.h"
+#import "NextCollectionViewCell.h"
+#import "DataManager.h"
+#import "Host.h"
 
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface HomeViewController ()
+@property (nonatomic, strong) HostView* hostview;
+@property (nonatomic, strong) DataManager* dataManager;
+@property (nonatomic, strong) Host* host;
+
+@property (nonatomic, strong) NSMutableArray* hostList;
+
+
 
 @end
 
 @implementation HomeViewController{
-    
-    NSMutableArray *hosts;
-    NSMutableDictionary *host1, *host2, *host3;
+    UITapGestureRecognizer *singleFingerTap;
+    BOOL open;
+    UISwipeGestureRecognizer *swipeDown;
+    NSMutableArray *days;
+    NSMutableArray *SMPics;
+
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    hosts = [[NSMutableArray alloc]init];
+    _dataManager = [[DataManager alloc] init];
+    [_dataManager getRemoteData];
     
-    UIImage *img1 = [UIImage imageNamed:@"me.jpg"];
-    UIImage *img2 = [UIImage imageNamed:@"sam.jpeg"];
-    UIImage *img3 = [UIImage imageNamed:@"thomas.jpeg"];
+    _hostList = _dataManager.hosts;
+    _host = [_hostList objectAtIndex:0];
+    
+    
+    [self setUpView];
+    [self setUpHost];
+    
+    days = [[NSMutableArray alloc]initWithObjects:@"Tomorrow",@"Tuesday",@"Wednesday",@"Thursday", nil];
+    SMPics = [[NSMutableArray alloc]initWithObjects:@"linkedin@3x.png",@"ig@3x.png",@"tweet@3x.png",@"fb@3x.png", nil];
 
-    
-    
-    host1=[[NSMutableDictionary alloc] initWithCapacity:4];
-    [host1 setValue:img1 forKey:@"img"];
-    [host1 setValue:@"Abdi" forKey:@"name"];
-    
-    [host1 setValue:@"UX Designer at PayPal" forKey:@"company"];
 
-    [host1 setValue:@"I am a UX designer at Paypal. graduated from Carnegie Mellon University in Pittsburgh, Pennsylvania. Today I will show you that projects I am working on and hopefully answer some of you questions! Thanks for tuning in." forKey:@"bio"];
-    
-    
-    host2=[[NSMutableDictionary alloc] initWithCapacity:4];
-    [host2 setValue:img2 forKey:@"img"];
-    [host2 setValue:@"Samantha" forKey:@"name"];
-    
-    [host2 setValue:@"Interaction Designer at Facebook" forKey:@"company"];
-    
-    [host2 setValue:@"I love colors and making great shit happen. The best is yet to come!" forKey:@"bio"];
-    
-    
-    host3=[[NSMutableDictionary alloc] initWithCapacity:4];
-    [host3 setValue:img3 forKey:@"img"];
-    [host3 setValue:@"Thomas" forKey:@"name"];
-    
-    [host3 setValue:@"VP of Design at Airbnb" forKey:@"company"];
-    
-    [host3 setValue:@"I lead one of the smartest designers ever as we change the world....again! Ask me anything! :)" forKey:@"bio"];
-    
-    
-    
-    [hosts addObject:host1];
-    [hosts addObject:host2];
-    [hosts addObject:host3];
+}
 
-    
-    
-    
 
+#pragma setupViews
+
+
+
+-(void)setUpView{
     
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    open = NO;
+    _hostview = [[HostView alloc] initWithFrame:self.view.frame attachToView:self.view];
+    
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Calendar@3x.png"] style:UIBarButtonItemStylePlain target:self action:@selector(dismiss:)];
+    self.navigationItem.rightBarButtonItem = closeButton;
+    
+    
+    swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss:)];
+    [swipeDown setDirection:(UISwipeGestureRecognizerDirectionDown)];
+    singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(handleSingleTap:)];
+    
+    [_hostview addGestureRecognizer:singleFingerTap];
+    _hostview.collectV.delegate = self;
+    _hostview.collectV.dataSource = self;
+    [_hostview.pulldown.nextCollection setShowsHorizontalScrollIndicator:NO];
+    _hostview.pulldown.nextCollection.delegate =self;
+    _hostview.pulldown.nextCollection.dataSource =self;
+    [_hostview.collectV registerClass:[CollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+    [_hostview.pulldown.nextCollection registerClass:[NextCollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+    [_hostview addGestureRecognizer:swipeDown];
+    
     
     self.navigationController.navigationBar.topItem.title = @"Today's Host";
-    
-    self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    
-    self.pageController.dataSource = self;
-    [[self.pageController view] setFrame:[[self view] bounds]];
-    
-    HostViewController *initialViewController = [self viewControllerAtIndex:0];
-    
-    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-    
-    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    [self addChildViewController:self.pageController];
-    [[self view] addSubview:[self.pageController view]];
-    [self.pageController didMoveToParentViewController:self];
 
-    // Do any additional setup after loading the view.
-}
-- (HostViewController *)viewControllerAtIndex:(NSUInteger)index {
     
-    HostViewController* childViewController = [[HostViewController alloc] init];
-    
-    childViewController.host = [hosts objectAtIndex:index];
-    
-  
-    childViewController.index = index;
-    
-    return childViewController;
     
 }
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+
+-(void)setUpHost{
     
-    NSUInteger index = [(HostViewController *)viewController index];
+    _hostview.img.image = [UIImage imageNamed:_host.img];
+    _hostview.name.text = _host.name;
+    _hostview.company.text = _host.job;
+    _hostview.bio.text = _host.bio;
     
-    if (index == 0) {
-        return nil;
+
+}
+
+
+#pragma collectionViewDelegate
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    if (collectionView ==  _hostview.collectV ){
+        
+        return _host.social_media.count;
+
     }
-    
-    // Decrease the index by 1 to return
-    index--;
-    
-    return [self viewControllerAtIndex:index];
-    
-}
+    else{
+        return _hostList.count-1;
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    
-    NSUInteger index = [(HostViewController *)viewController index];
-    
-    index++;
-    
-    if (index == [hosts count]) {
-        return nil;
+        
     }
-    
-    return [self viewControllerAtIndex:index];
-    
 }
 
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
-    // The number of items reflected in the page indicator.
-    return 5;
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+   
+    
+    if (collectionView ==  _hostview.collectV ) {
+        CollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+        
+        cell.icon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[SMPics objectAtIndex:indexPath.row]]];
+
+        cell.backgroundColor=[UIColor whiteColor];
+        return cell;
+
+    }
+    else{
+        NextCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+        
+        Host *upcomingHost = [[Host alloc]init];
+        
+        upcomingHost = [_hostList objectAtIndex:indexPath.row+1];
+        
+        cell.handle.text = [days objectAtIndex:indexPath.row];
+        cell.icon.image = [UIImage imageNamed:upcomingHost.img];
+        cell.name.text = upcomingHost.name;
+        cell.company.text = upcomingHost.job;
+    
+        cell.backgroundColor=[UIColor whiteColor];
+        return cell;
+
+    }
 }
 
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-    // The selected item reflected in the page indicator.
-    return 0;
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (collectionView ==  _hostview.collectV ) {
+        return CGSizeMake(50, 50);
+        
+    }
+    else{
+        return CGSizeMake(125, 125);
+    }
+}
+
+
+
+
+
+
+#pragma gesture handlers
+
+-(void)dismiss:(UISwipeGestureRecognizer *)recognizer{
+    
+    if (!open) {
+        [swipeDown setDirection:(UISwipeGestureRecognizerDirectionUp)];
+        
+        _hostview.heightP.constant = 150;
+        
+    }
+    else{
+        [swipeDown setDirection:(UISwipeGestureRecognizerDirectionDown)];
+        
+        _hostview.heightP.constant = 0;
+        
+    }
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        [self.view layoutIfNeeded];
+        
+    }];
+    
+    open = !open;
+    
+}
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+    
+    ViewController *vc = [[ViewController alloc] init];
+    
+    UINavigationController* VC1Navigation = [[UINavigationController alloc]
+                                             initWithRootViewController:vc];
+    
+    
+    [self.navigationController presentModalViewController:VC1Navigation animated:YES];
+    
+    
 }
 
 

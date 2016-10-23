@@ -9,15 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "Question.h"
 #import "Reply.h"
+#import "Host.h"
 
 @interface DataManager : NSObject
 
 @property (nonatomic, strong) NSMutableArray *questionsList;
 @property (nonatomic, strong) NSMutableArray *replyList;
+@property (nonatomic, strong) NSMutableArray *hosts;
 
 
 
 
+-(void)getRemoteData;
 -(void)setQuestionsData;
 -(void)setRepliesData:(Question *)question;
 -(void)addQuestion:(Question *)question;
