@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.h
+//  HomeViewController.h
 //  Goggles
 //
 //  Created by Abdi on 10/21/16.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
+
 
 @end
+

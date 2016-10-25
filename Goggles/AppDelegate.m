@@ -11,6 +11,8 @@
 #import "ViewController.h"
 #import "HomeViewController.h"
 #import "TabViewController.h"
+#import "SettingsViewController.h"
+
 
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -19,6 +21,8 @@
 @property (nonatomic, strong) UIViewController *rootViewController;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) TabViewController *tabbar;
+
+@property (strong, nonatomic) SettingsViewController *settings;
 
 
 
@@ -48,6 +52,11 @@
 
     
     _tabbar = [[TabViewController alloc] init];
+    _settings = [[SettingsViewController alloc] init];
+
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_settings];
+
     
     
 //    UIColorFromRGB(0x23AEFC);
@@ -56,7 +65,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = _tabbar;
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;}
 

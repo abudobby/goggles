@@ -6,7 +6,6 @@
 //  Copyright © 2016 Goggles. All rights reserved.
 //
 
-#import "HostViewController.h"
 #import "HomeViewController.h"
 #import "HostView.h"
 #import "ViewController.h"
